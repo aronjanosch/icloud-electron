@@ -1,0 +1,38 @@
+app-id: com.kackstift.icloud-electron
+runtime: org.freedesktop.Platform
+runtime-version: '22.08'
+sdk: org.freedesktop.Sdk
+
+base: org.electronjs.Electron2.BaseApp
+base-version: '22.08'
+
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node18
+build-options:
+  append-path: /usr/lib/sdk/node18/bin
+  env:
+    NPM_CONFIG_LOGLEVEL: info
+
+command: run.sh
+
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=network
+
+modules:
+  name: icloud-electron
+  buildsystem: simple
+  build-options:
+    env:
+      XDG_CACHE_HOME: /run/build/icloud-electron/flatpak-node/cache
+      npm_config_cache: /run/build/icloud-electron/flatpak-node/npm-cache
+      npm_config_nodedir: /usr/lib/sdk/node18
+      npm_config_offline: 'true'
+  subdir: main
+  sources:
+    - type: archive
+      url: https://github.com/flathub/electron-sample-app/archive/1.0.1.tar.gz
+      sha256: a2feb3f1cf002a2e4e8900f718cc5c54db4ad174e48bfcfbddcd588c7b716d5b
+      dest: main

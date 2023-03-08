@@ -1,0 +1,30 @@
+{
+  "name": "icloud-electron",
+  "description": "An Electron application of icloud.com",
+  "main": "main.js",
+  "author": {
+    "name": "Aron Wiederkehr",
+    "email": "aron.wiederkehr@gmail.com",
+    "url": "https://github.com/aronjanosch"
+  },
+  "version": "0.0.1",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "22.0.3",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+    "appId": "com.kackstift.icloud",
+    "linux": {
+      "target": "AppImage",
+      "category": "Office",
+      "icon": "icloud.png"
+    },
+    "electronDist": "/usr/lib/electron",
+    "electronVersion": "22.0.3"
+  },
+  "scripts": {
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  }
+}
